@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const dayjs = require('dayjs');
 
 const thoughtSchema = new Schema(
     {
@@ -9,7 +10,10 @@ const thoughtSchema = new Schema(
             maxLength: 280
         },
         createdAt: {
-
+            type: Date,
+            default: Date.now,
+            // MMM is Jan-Dec format
+            get: function () { dayjs().format('MMM DD YYYY') }
         },
         username: {
             type: String,
