@@ -22,8 +22,8 @@ const userSchema = new Schema(
             }
         },
         thoughts: [{
-            //type: Schema.Types.ObjectId // temp until thought model is made
-            //ref: 'Thought'
+            type: Schema.Types.ObjectId,
+            ref: 'Thought'
         }],
         friends: [{
             type: Schema.Types.ObjectId,
