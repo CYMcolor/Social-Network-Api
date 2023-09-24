@@ -20,7 +20,7 @@ const thoughtSchema = new Schema(
             type: String,
             required: [true, 'Username is required']
         },
-        reactions: [reactionSchema] //temp until reaction model is made
+        reactions: [reactionSchema], 
     },
     {
         toJSON: {

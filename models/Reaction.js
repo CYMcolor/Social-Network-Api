@@ -1,11 +1,11 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema,  Types } = require('mongoose');
 const dayjs = require('dayjs');
 
 const reactionSchema = new Schema(
     {
         reactionId: {
             type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId            
+            default: () => new Types.ObjectId()            
         },
         reactionBody: {
             type: String,
@@ -25,15 +25,11 @@ const reactionSchema = new Schema(
     },
     {
         toJSON: {
-            //need virtuals for reaction count
-            virtuals: true,
+            getters: true
         },
         id: false,
     }
 );
+//reactions are not models therfor no instialization
 
-
-// Initialize our Reaction model
-const Reaction = model('reaction', reactionSchema);
-
-module.exports = Reaction;
+module.exports = reactionSchema;
