@@ -74,6 +74,10 @@ module.exports = {
         const user = await User.findOneAndDelete( 
           { _id: req.params.userId},
         );
+        // cannot find user
+        if (!user) {
+          return res.status(404).json({ message: 'No user with that ID' });
+        }
         res.status(200).json(user);
         console.log(`Deleted: ${result}`);
       } catch (err) {
@@ -81,7 +85,7 @@ module.exports = {
       }
     },
 
-    // friends functions -----------------
+    // friends functions ------------------
     // add friend
     async addFriend(req, res) {
       try {
@@ -98,10 +102,33 @@ module.exports = {
           return res.status(404).json({ message: 'No user with that ID' });
         }
         res.status(200).json(user);
-        console.log(`Updated: ${result}`);
+        console.log(`Updated User's Friends: ${result}`);
       } catch (err) {
         res.status(500).json(err);
         console.log(err);
+      }
+    },
+
+    // delete friend
+    async deleteFriend(req, res) {
+      try {
+        const user = await User.findOneAndUpdate(
+          // find by user id
+          { _id: req.params.userId},
+          // add friend by in params, pull deletes from array
+          { $pull: { friends: req.params.friendId }},
+          // show updated info on return
+          {new: true}
+        );
+        // cannot find user
+        if (!user) {
+          return res.status(404).json({ message: 'No user with that ID' });
+        }
+
+        res.status(200).json(user);
+        console.log(`Deleted User's Friend: ${result}`);
+      } catch (err) {
+        res.status(500).json(err);
       }
     },
 };
