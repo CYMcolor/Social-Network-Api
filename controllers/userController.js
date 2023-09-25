@@ -16,8 +16,8 @@ module.exports = {
       try {
         const user = await User.findOne({ _id: req.params.userId})
           .select('-__v')
-          //.populate('thoughts')
-          //.populate('friends');
+          //.populate({ path: 'thoughts', select: '-__v'})
+          //.populate({ path: 'friends', select: '-__v'});
 
         // cannot find user
         if (!user) {
@@ -40,4 +40,22 @@ module.exports = {
           res.status(500).json(err);
         }
     },
+
+    // update user
+    async updateUser(req, res) {
+      try {
+        const user = await User.findOneAndUpdate(
+          // find by id
+          { _id: req.params.userId},
+          // update with req json 
+          req.body,
+          // show updated info on return
+          {new: true}
+        );
+        res.status(200).json(user);
+        console.log(`Updated: ${result}`);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+  }, 
 };
