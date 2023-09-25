@@ -21,7 +21,7 @@ module.exports = {
 
         // cannot find user
         if (!user) {
-          return res.status(404).json({ message: 'No user with that ID' });
+          return res.json({ message: 'No user with that ID' });
         }
 
         res.json(user);
@@ -36,10 +36,7 @@ module.exports = {
     async createUser(req, res) {
         try {
           const user = await User.create(req.body);
-          // cannot find user
-          if (!user) {
-            return res.status(404).json({ message: 'No user with that ID' });
-          }
+          
           res.json(user);
         } catch (err) {
           res.status(500).json(err);
@@ -59,7 +56,7 @@ module.exports = {
         );
         // cannot find user
         if (!user) {
-          return res.status(404).json({ message: 'No user with that ID' });
+          return res.json({ message: 'No user with that ID' });
         }
         res.json(user);
         console.log(`Updated: ${result}`);
@@ -76,7 +73,7 @@ module.exports = {
         );
         // cannot find user
         if (!user) {
-          return res.status(404).json({ message: 'No user with that ID' });
+          return res.json({ message: 'No user with that ID' });
         }
         res.json(user);
         console.log(`Deleted: ${result}`);
@@ -99,7 +96,7 @@ module.exports = {
         );
         // cannot find user
         if (!user) {
-          return res.status(404).json({ message: 'No user with that ID' });
+          return res.json({ message: 'No user with that ID' });
         }
         res.json(user);
         console.log(`Updated User's Friends: ${res}`);
@@ -122,7 +119,7 @@ module.exports = {
         );
         // cannot find user
         if (!user) {
-          return res.status(404).json({ message: 'No user with that ID' });
+          return res.json({ message: 'No user with that ID' });
         }
 
         res.json(user);
