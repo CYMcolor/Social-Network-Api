@@ -28,7 +28,7 @@ Schema:
 
 Video demonstration:
 
-[![video demonstration](./assets/images/video-static.PNG)]
+[![video demonstration](./assets/images/video-static.PNG)](https://drive.google.com/file/d/1uhWSbSghtEb10w3bh-z7UJS1ErQLHtEJ/view)
 
 ## License
  This application is covered under MIT License.

@@ -36,11 +36,14 @@ module.exports = {
     // create a new user 
     async createUser(req, res) {
         try {
-          const user = await User.create(req.body, {runValidators: true});
+          const user = await User.create(req.body,
+            {runValidators: true}
+          );
           
           res.status(200).json(user);
         } catch (err) {
           res.status(500).json(err);
+          console.log(err);
         }
     },
 
@@ -53,7 +56,10 @@ module.exports = {
           // update with req json 
           req.body,
           // show updated info on return
-          { runValidators: true, new: true}
+          { 
+            runValidators: true, 
+            new: true
+          }
         );
         // cannot find user
         if (!user) {
