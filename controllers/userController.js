@@ -7,7 +7,7 @@ module.exports = {
         const users = await User.find();
         res.json(users);
       } catch (err) {
-        res.status(500).json(err);
+        res.json(err);
       }
     },
 
@@ -27,7 +27,7 @@ module.exports = {
         res.json(user);
 
       } catch (err) {
-        res.status(500).json(err);
+        res.json(err);
         console.log(err);
       }
     },
@@ -39,7 +39,7 @@ module.exports = {
           
           res.json(user);
         } catch (err) {
-          res.status(500).json(err);
+          res.json(err);
         }
     },
 
@@ -61,7 +61,7 @@ module.exports = {
         res.json(user);
         console.log(`Updated: ${result}`);
       } catch (err) {
-        res.status(500).json(err);
+        res.json(err);
       }
     },
     
@@ -78,7 +78,7 @@ module.exports = {
         res.json(user);
         console.log(`Deleted: ${result}`);
       } catch (err) {
-        res.status(500).json(err);
+        res.json(err);
       }
     },
 
@@ -101,7 +101,7 @@ module.exports = {
         res.json(user);
         console.log(`Updated User's Friends: ${res}`);
       } catch (err) {
-        //res.status(500).json(err);
+        //res.json(err);
         console.log(err);
       }
     },
@@ -125,7 +125,7 @@ module.exports = {
         res.json(user);
         console.log(`Deleted User's Friend: ${res}`);
       } catch (err) {
-        res.status(500).json(err);
+        res.json(err);
       }
     },
 };

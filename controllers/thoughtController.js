@@ -6,16 +6,17 @@ module.exports = {
         try {
           const thought = await Thought.create(req.body);
           // update associated User from the req.body
-          const user = await User.findByIdAndUpdate(
+          const user = await User.findOneAndUpdate(
             // find by username from req.body
-            { username: req.body.username},
-            // update with thought id
-            { $addToSet: { thoughts: thought._id }},
+            { _id: req.body.userId},
+            // update with newly created thought
+            { $addToSet: { thoughts: thought }},
             // show updated info on return
-            {new: true}
+            { new: true}
           );
+
+          res.json({thought, user});
           
-          res.json(thought);
         } catch (err) {
           res.status(500).json(err);
         }
