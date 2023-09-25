@@ -5,9 +5,9 @@ module.exports = {
     async getThoughts(req, res) {
         try {
           const thought = await Thought.find();
-          res.json(thought);
+          res.status(200).json(thought);
         } catch (err) {
-          res.json(err);
+          res.status(500).json(err);
         }
     },
 
@@ -18,13 +18,13 @@ module.exports = {
   
           // cannot find user
           if (!thought) {
-            return res.json({ message: 'No thought with that ID' });
+            return res.status(404).json({ message: 'No thought with that ID' });
           }
   
-          res.json(thought);
+          res.status(200).json(thought);
   
         } catch (err) {
-          res.json(err);
+          res.status(500).json(err);
           console.log(err);
         }
     },
@@ -43,7 +43,7 @@ module.exports = {
             { new: true}
           );
 
-          res.json({thought, user});
+          res.status(200).json({thought, user});
           
         } catch (err) {
           res.status(500).json(err);
@@ -63,9 +63,9 @@ module.exports = {
           );
           // cannot find user
           if (!thought) {
-            return res.json({ message: 'No user with that ID' });
+            return res.status(404).json({ message: 'No user with that ID' });
           }
-          res.json(thought);
+          res.status(200).json(thought);
         } catch (err) {
           res.status(500).json(err);
         }
@@ -79,11 +79,11 @@ module.exports = {
         );
         // cannot find user
         if (!thought) {
-          return res.json({ message: 'No thought with that ID' });
+          return res.status(404).json({ message: 'No thought with that ID' });
         }
-        res.json( thought);
+        res.status(200).json( thought);
       } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
       }
     },
       
@@ -102,12 +102,12 @@ module.exports = {
           );
           // cannot find user
           if (!thought) {
-            return res.json({ message: 'No thought with that ID' });
+            return res.status(404).json({ message: 'No thought with that ID' });
           }
-          res.json(thought);
+          res.status(200).json(thought);
         } catch (err) {
-          //res.json(err);
-          console.log(err);
+          res.status(500).json(err);
+          //console.log(err);
         }
     },
 
@@ -124,12 +124,12 @@ module.exports = {
           );
           // cannot find thought
           if (!thought) {
-            return res.json({ message: 'No thought with that ID' });
+            return res.status(404).json({ message: 'No thought with that ID' });
           }
   
-          res.json(thought);
+          res.status(200).json(thought);
         } catch (err) {
-          res.json(err);
+          res.status(500).json(err);
         }
       },
 };

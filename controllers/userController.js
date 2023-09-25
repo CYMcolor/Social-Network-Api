@@ -5,9 +5,9 @@ module.exports = {
     async getUsers(req, res) {
       try {
         const users = await User.find();
-        res.json(users);
+        res.status(200).json(users);
       } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
       }
     },
 
@@ -22,25 +22,25 @@ module.exports = {
 
         // cannot find user
         if (!user) {
-          return res.json({ message: 'No user with that ID' });
+          return res.status(404).json({ message: 'No user with that ID' });
         }
 
-        res.json(user);
+        res.status(200).json(user);
 
       } catch (err) {
-        res.json(err);
-        console.log(err);
+        res.status(500).json(err);
+        //console.log(err);
       }
     },
 
     // create a new user 
     async createUser(req, res) {
         try {
-          const user = await User.create(req.body);
+          const user = await User.create(req.body, {runValidators: true});
           
-          res.json(user);
+          res.status(200).json(user);
         } catch (err) {
-          res.json(err);
+          res.status(500).json(err);
         }
     },
 
@@ -53,16 +53,16 @@ module.exports = {
           // update with req json 
           req.body,
           // show updated info on return
-          {new: true}
+          { runValidators: true, new: true}
         );
         // cannot find user
         if (!user) {
-          return res.json({ message: 'No user with that ID' });
+          return res.status(404).json({ message: 'No user with that ID' });
         }
-        res.json(user);
+        res.status(200).json(user);
         
       } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
       }
     },
     
@@ -74,11 +74,11 @@ module.exports = {
         );
         // cannot find user
         if (!user) {
-          return res.json({ message: 'No user with that ID' });
+          return res.status(404).json({ message: 'No user with that ID' });
         }
-        res.json(user);
+        res.status(200).json(user);
       } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
       }
     },
 
@@ -96,12 +96,12 @@ module.exports = {
         );
         // cannot find user
         if (!user) {
-          return res.json({ message: 'No user with that ID' });
+          return res.status(404).json({ message: 'No user with that ID' });
         }
-        res.json(user);
+        res.status(200).json(user);
       } catch (err) {
         //res.json(err);
-        console.log(err);
+        console.status(500).log(err);
       }
     },
 
@@ -118,12 +118,12 @@ module.exports = {
         );
         // cannot find user
         if (!user) {
-          return res.json({ message: 'No user with that ID' });
+          return res.status(404).json({ message: 'No user with that ID' });
         }
 
-        res.json(user);
+        res.status(200).json(user);
       } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
       }
     },
 };
