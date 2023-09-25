@@ -20,7 +20,7 @@ const reactionSchema = new Schema(
             type: Date,
             default: Date.now,
             // MMM is Jan-Dec format
-            get: function () { dayjs().format('MMM DD YYYY') }
+            get: () => dayjs().format('MMM DD, YYYY')
         },
     },
     {

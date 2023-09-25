@@ -109,5 +109,5 @@ module.exports = {
           //res.json(err);
           console.log(err);
         }
-      },
+    },
 };
