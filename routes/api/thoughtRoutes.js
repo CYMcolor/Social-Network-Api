@@ -6,7 +6,6 @@ const {
 
 // /api/thoughts
 router.route('/')
-    .get(getUsers)
-    .post(createUser);
+    .post(createThought);
 
 module.exports = router;
