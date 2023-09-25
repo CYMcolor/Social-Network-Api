@@ -27,7 +27,7 @@ module.exports = {
           res.json(err);
           console.log(err);
         }
-      },
+    },
 
     // create a new thought 
     async createThought(req, res) {
@@ -87,5 +87,27 @@ module.exports = {
       }
     },
       
-
+    // reactions -------------------------------------
+    // add reaction 
+    async addReaction(req, res) {
+        try {
+          // update thought to have new reaction
+          const thought = await Thought.findOneAndUpdate(
+            // find by user id
+            { _id: req.params.thoughtId},
+            // add friend by in params, addToSet makes sure it appends to array
+            { $addToSet: { reactions: req.body }},
+            // show updated info on return
+            {new: true}
+          );
+          // cannot find user
+          if (!thought) {
+            return res.json({ message: 'No thought with that ID' });
+          }
+          res.json(thought);
+        } catch (err) {
+          //res.json(err);
+          console.log(err);
+        }
+      },
 };
