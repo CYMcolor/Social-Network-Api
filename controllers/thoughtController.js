@@ -110,4 +110,26 @@ module.exports = {
           console.log(err);
         }
     },
+
+    // delete reaction
+    async deleteReaction(req, res) {
+        try {
+          const thought = await Thought.findOneAndUpdate(
+            // find by user id
+            { _id: req.params.thoughtId},
+            // add friend by in params, pull deletes from array
+            { $pull: { reactions: { reactionId: req.params.reactionId }}},
+            // show updated info on return
+            {new: true}
+          );
+          // cannot find thought
+          if (!thought) {
+            return res.json({ message: 'No thought with that ID' });
+          }
+  
+          res.json(thought);
+        } catch (err) {
+          res.json(err);
+        }
+      },
 };
