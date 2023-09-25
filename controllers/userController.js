@@ -77,7 +77,6 @@ module.exports = {
           return res.json({ message: 'No user with that ID' });
         }
         res.json(user);
-        console.log(`Deleted: ${result}`);
       } catch (err) {
         res.json(err);
       }

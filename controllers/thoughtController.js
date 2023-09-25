@@ -70,6 +70,22 @@ module.exports = {
           res.status(500).json(err);
         }
     },
+
+    // delete user
+    async deleteThought(req, res) {
+      try {
+        const thought = await Thought.findOneAndDelete( 
+          { _id: req.params.thoughtId},
+        );
+        // cannot find user
+        if (!thought) {
+          return res.json({ message: 'No thought with that ID' });
+        }
+        res.json(thought);
+      } catch (err) {
+        res.json(err);
+      }
+    },
       
 
 };
