@@ -81,7 +81,7 @@ module.exports = {
         if (!thought) {
           return res.json({ message: 'No thought with that ID' });
         }
-        res.json(thought);
+        res.json( thought);
       } catch (err) {
         res.json(err);
       }
