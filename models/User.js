@@ -21,12 +21,14 @@ const userSchema = new Schema(
                 message: 'Must be a valid email'
             }
         },
+        // one to many
         thoughts: [{
             type: Schema.Types.ObjectId,
             ref: 'Thought'
         }],
+        // one to many
         friends: [{
-            type: Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId, 
             ref: 'User'
         }]
     },
@@ -48,6 +50,6 @@ userSchema
     })
 
 // Initialize our User model
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

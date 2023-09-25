@@ -16,8 +16,8 @@ module.exports = {
       try {
         const user = await User.findOne({ _id: req.params.userId})
           .select('-__v')
-          //.populate('thoughts')
-          //.populate('friends');
+          .populate('thoughts')
+          .populate('friends');
 
         // cannot find user
         if (!user) {
@@ -28,6 +28,7 @@ module.exports = {
 
       } catch (err) {
         res.status(500).json(err);
+        console.log(err);
       }
     },
 
