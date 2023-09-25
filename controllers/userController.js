@@ -37,9 +37,9 @@ module.exports = {
         try {
           const user = await User.create(req.body);
           // cannot find user
-        if (!user) {
-          return res.status(404).json({ message: 'No user with that ID' });
-        }
+          if (!user) {
+            return res.status(404).json({ message: 'No user with that ID' });
+          }
           res.json(user);
         } catch (err) {
           res.status(500).json(err);
@@ -61,7 +61,7 @@ module.exports = {
         if (!user) {
           return res.status(404).json({ message: 'No user with that ID' });
         }
-        res.status(200).json(user);
+        res.json(user);
         console.log(`Updated: ${result}`);
       } catch (err) {
         res.status(500).json(err);
@@ -78,7 +78,7 @@ module.exports = {
         if (!user) {
           return res.status(404).json({ message: 'No user with that ID' });
         }
-        res.status(200).json(user);
+        res.json(user);
         console.log(`Deleted: ${result}`);
       } catch (err) {
         res.status(500).json(err);
@@ -101,10 +101,10 @@ module.exports = {
         if (!user) {
           return res.status(404).json({ message: 'No user with that ID' });
         }
-        res.status(200).json(user);
-        console.log(`Updated User's Friends: ${result}`);
+        res.json(user);
+        console.log(`Updated User's Friends: ${res}`);
       } catch (err) {
-        res.status(500).json(err);
+        //res.status(500).json(err);
         console.log(err);
       }
     },
@@ -125,8 +125,8 @@ module.exports = {
           return res.status(404).json({ message: 'No user with that ID' });
         }
 
-        res.status(200).json(user);
-        console.log(`Deleted User's Friend: ${result}`);
+        res.json(user);
+        console.log(`Deleted User's Friend: ${res}`);
       } catch (err) {
         res.status(500).json(err);
       }
