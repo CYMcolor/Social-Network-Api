@@ -60,7 +60,7 @@ module.exports = {
           return res.json({ message: 'No user with that ID' });
         }
         res.json(user);
-        console.log(`Updated: ${result}`);
+        
       } catch (err) {
         res.json(err);
       }
@@ -100,7 +100,6 @@ module.exports = {
           return res.json({ message: 'No user with that ID' });
         }
         res.json(user);
-        console.log(`Updated User's Friends: ${res}`);
       } catch (err) {
         //res.json(err);
         console.log(err);
@@ -124,7 +123,6 @@ module.exports = {
         }
 
         res.json(user);
-        console.log(`Deleted User's Friend: ${res}`);
       } catch (err) {
         res.json(err);
       }

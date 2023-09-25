@@ -50,4 +50,26 @@ module.exports = {
         }
     },
 
+    // update thought
+    async updateThought(req, res) {
+        try {
+          const thought = await Thought.findOneAndUpdate(
+            // find by id
+            { _id: req.params.thoughtId},
+            // update with req json 
+            req.body,
+            // show updated info on return
+            {new: true}
+          );
+          // cannot find user
+          if (!thought) {
+            return res.json({ message: 'No user with that ID' });
+          }
+          res.json(thought);
+        } catch (err) {
+          res.status(500).json(err);
+        }
+    },
+      
+
 };
