@@ -11,6 +11,24 @@ module.exports = {
         }
     },
 
+    // get single thought by Id
+    async getSingleThought(req, res) {
+        try {
+          const thought = await Thought.findOne({ _id: req.params.thoughtId});
+  
+          // cannot find user
+          if (!thought) {
+            return res.json({ message: 'No thought with that ID' });
+          }
+  
+          res.json(thought);
+  
+        } catch (err) {
+          res.json(err);
+          console.log(err);
+        }
+      },
+
     // create a new thought 
     async createThought(req, res) {
         try {

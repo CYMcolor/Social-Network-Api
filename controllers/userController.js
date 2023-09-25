@@ -15,6 +15,7 @@ module.exports = {
     async getSingleUser(req, res) {
       try {
         const user = await User.findOne({ _id: req.params.userId})
+          // show __v which is the version key, it only increments when an array was updated
           .select('-__v')
           .populate('thoughts')
           .populate('friends');
